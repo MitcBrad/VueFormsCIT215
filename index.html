@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0">
+    <title>CIT215 Form Submission Using VUE</title>
+    <link rel="shortcut icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<form id="input-form">
+    <img src="https://positivethinking.tech/wp-content/uploads/2021/01/Logo-Vuejs.png" alt="">
+    <div class="maincontain">
+        <h2>Part 1</h2>
+    <div class="namespot">
+        <h1>Name<a href="">*</a></h1>
+    <input type="text" v-model="name" id="name" placeholder="Enter Your Name">
+    </div>
+    <div class="emailspot">
+        <h1>Email<a href="">*</a></h1>
+        <input type="text" v-model="email" id="email" placeholder="Enter Your Email">
+    </div>
+    Your Name:
+        <h3 v-if="name.length<1">Your name requires at least 2 characters.</h3>
+        <h3 v-if="name.length == 1">Your name requires 1 more character.</h3>
+        <h3 v-else>{{name}}</h3>
+    Your Email: <h3 v-model="email":rules="emailRules">Email requires the format name@domain.xxx</h3>
+        <h3 v-else>{{email}}</h3>
+        <button onclick="clicked()">View Requirements</button>
+    </div>
+</form>
+
+<!--Input: Name (text field). The input needs to have at least 2 characters. Required.-->
+<!--Input: Email (text field). The input needs to be a valid email address. Required.-->
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
+
+
+<!--Bradley Mitchell | November 06, 2021-->
