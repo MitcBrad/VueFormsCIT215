@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name=viewport"
-          content="width=device-width, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0">
-    <title>CIT215 Form Submission Using VUE</title>
-    <link rel="shortcut icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png"/>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name=viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=1, minimum-scale=1.0, maximum-scale=1.0">
+  <title>CIT215 Form Submission Using VUE</title>
+  <link rel="shortcut icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png"/>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <form id="input-form">
-    <img src="https://positivethinking.tech/wp-content/uploads/2021/01/Logo-Vuejs.png" alt="">
-    <div class="maincontain">
-        <h2>Part 1</h2>
+  <img src="https://positivethinking.tech/wp-content/uploads/2021/01/Logo-Vuejs.png">
+  <div class="maincontain">
+    <h2>Part 1</h2>
     <div class="namespot">
-        <h1>Name<a href="">*</a></h1>
-    <input type="text" v-model="name" id="name" placeholder="Enter Your Name">
+      <h1>Name<a href="">*</a></h1>
+      <input type="text" v-model="name" id="name" class="theirname" placeholder="Enter Your Name">
     </div>
     <div class="emailspot">
-        <h1>Email<a href="">*</a></h1>
-        <input type="text" v-model="email" id="email" placeholder="Enter Your Email">
+      <h1>Email<a href="">*</a></h1>
+      <input type="text" v-model="email" id="email" class="theiremail" placeholder="Enter Your Email">
     </div>
     Your Name:
-        <h3 v-if="name.length<1">Your name requires at least 2 characters.</h3>
-        <h3 v-if="name.length == 1">Your name requires 1 more character.</h3>
-        <h3 v-else>{{name}}</h3>
-    Your Email: <h3 v-model="email":rules="emailRules">Email requires the format name@domain.xxx</h3>
-        <h3 v-else>{{email}}</h3>
-        <button onclick="clicked()">View Requirements</button>
+    <h3 v-if="name.length<1" class="span1">Your name requires at least 2 characters.</h3>
+    <h3 v-if="name.length == 1" class="span2">Your name requires 1 more character.</h3>
+    <h3 v-else class="span3" class="goodname">{{name}}</h3>
+    Your Email:
+    <h3 v-model="email" v-if="email.includes('@',0) != true && email.includes('.',0) != true" class="span1">Email requires the format name@domain.xxx</h3>
+    <h3 v-model="email" v-if="email.includes('@',0) != true && email.includes('.',0) == true" class="span2">Your email does not have an @</h3>
+    <h3 v-model="email" v-if="email.includes('@',0) == true && email.includes('.',0) != true" class="span2">Your email does not have a suffix (.com/.edu/etc.)</h3>
+    <h3 v-if="email.includes('@',0) == true && email.includes('.',0) == true" class="span3" class="goodemail">{{email}}</h3>
+    <div class="submissionstatus" v-if="name.length <2 || email.includes('@',0) != true || email.includes('.',0) != true">Submission Not Yet Valid</div>
+    <div class="submissionstatus" v-else>Please Submit</div>
+    <div class="buttons">
+      <div class="isntMet" v-if="email.includes('@',0) != true || email.includes('.',0) != true || name.length <2">
+        <button class="submit" disabled>Submit</button>
+      </div>
+      <div class="isMet" v-if="email.includes('@',0) == true && email.includes('.',0) == true && name.length >1">
+        <button class="submit" type="button" v-on:click="alert">Submit</button>
+
+      </div>
     </div>
+  </div>
+</form>
+<form id="toggle">
+  <div class="modifier"></div>
+  <div class="maincontain">
+    <h2>Part 2</h2>
+    <div v-for="items in toggles" class="namespot">
+      <div class="swapme">
+        <h1 class="header">
+        {{items.name}}
+      </h1>
+      </div>
+
+  </div>
 </form>
 
-<!--Input: Name (text field). The input needs to have at least 2 characters. Required.-->
-<!--Input: Email (text field). The input needs to be a valid email address. Required.-->
+
 
 
 
