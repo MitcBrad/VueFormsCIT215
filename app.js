@@ -11,15 +11,15 @@ new Vue({
     },
 
 })
-
-
 new Vue({
     el: "#toggle",
     data: {
         toggles:[
             {
                 name:"Protagonist",
-                codename:"Joker"},
+                codename:"Joker",
+
+            },
             {
                 name:"Anne",
                 codename:"Panther"},
@@ -27,21 +27,44 @@ new Vue({
                 name:"Ryuji",
                 codename:"Skull"}
         ]
-    },methods: {
-
     }
 })
 
+function swap(){
+    let x = document.getElementById("true1");
+    let y = document.getElementById("false1");
+    x.setAttribute('id','false1');
+    x.setAttribute('class','header visible');
+    y.setAttribute('id','true1');
+    y.setAttribute('class','header');
+}
+function swap2(){
+    let x = document.getElementById("true2");
+    let y = document.getElementById("false2");
+    x.setAttribute('id','false2');
+    x.setAttribute('class','header visible');
+    y.setAttribute('id','true2');
+    y.setAttribute('class','header');
+}
+function swap3(){
+    let x = document.getElementById("true3");
+    let y = document.getElementById("false3");
+    x.setAttribute('id','false3');
+    x.setAttribute('class','header visible');
+    y.setAttribute('id','true3');
+    y.setAttribute('class','header');
+}
 
-let starter = true;
-document.addEventListener("DOMContentLoaded", () =>{
-    if (starter == true){
-        let nameheader = document.getElementsByClassName("header");
-        nameheader.setAttribute("name", "codename");
+// new Vue({
+//     el: '#switch',
+//
+//     data() {
+//         return {
+//             toggle: false
+//             }
+//         }
+// })
 
-        starter = false;
-    }
-});
 // Input: Name (text field). The input needs to have at least 2 characters. Required.
 // Input: Email (text field). The input needs to be a valid email address. Required.
 
